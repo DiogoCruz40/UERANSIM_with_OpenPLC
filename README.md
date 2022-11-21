@@ -1,46 +1,31 @@
-# OpenPLC Runtime version 3
+# UERANSIM with OpenPLC 
 
-[![Build Status](https://travis-ci.org/thiagoralves/OpenPLC_v3.svg?branch=master)](https://travis-ci.org/thiagoralves/OpenPLC_v3)
-[![Build status](https://ci.appveyor.com/api/projects/status/ut3466ixwtyf68qg?svg=true)](https://ci.appveyor.com/project/shrmrf/openplc-v3)
+​	This is a project composed by UERANSIM v2.2.6 and OpenPLC v3 to run in a Kubernetes environment.
 
-OpenPLC is an open-source [Programmable Logic Controller](https://en.wikipedia.org/wiki/Programmable_logic_controller) that is based on easy to use software. Our focus is to provide a low cost industrial solution for automation and research. OpenPLC has been used in [many research papers](https://scholar.google.com/scholar?as_ylo=2014&q=openplc&hl=en&as_sdt=0,1) as a framework for industrial cyber security research, given that it is the only controller to provide the entire source code.
-The OpenPLC Project consists of three sub-projects:
-1. [Runtime](https://github.com/thiagoralves/OpenPLC_v3)
-2. [Programming editor](http://www.openplcproject.com/plcopen-editor)
-3. [HMI builder](http://www.openplcproject.com/reference-installing-scadabr)
+## Prerequisites:
+
+[Kubernetes](https://kubernetes.io/docs/setup/)
+
+[HELM](https://helm.sh/docs/intro/install/)
 
 ## Installation:
-```bash
-git clone https://github.com/thiagoralves/OpenPLC_v3.git
-cd OpenPLC_v3
-./install.sh [platform]
-```
 
-Where `[platform]` can be:
+1. $ `kubectl create namespace core5g`
+2. $ `helm repo add openverso https://gradiant.github.io/openverso-charts/`
+3. $ `helm repo update`
+4. $ `helm install <name-of-gnb> openverso/ueransim-gnb -n core5g `
+5. $ `git clone https://github.com/DiogoCruz40/UERANSIM_with_OpenPLC`
+6. Change **supi** (only the **MSISDN** property) if u want to have different UEs  -> [ue.yaml](https://github.com/DiogoCruz40/UERANSIM_with_OpenPLC/blob/main/ue.yaml)
+7. $ `docker login registry.gitlab.com`
+8. $ `docker build -t registry.gitlab.com/<your-repository>/<name>:<tag> .`
+9. $ `docker push registry.gitlab.com/<your-repository>/<name>:<tag>` 
+10. Change **initialMSISDN** to match **supi** property in *ue.yaml*  folder if u want to have different UEs -> [values.yaml](https://github.com/DiogoCruz40/UERANSIM_with_OpenPLC/blob/main/ueransim-ues/values.yaml)
+11. $ `helm install <name-of-ue>-<number-of-ue> ./ueransim-ues -n core5g`
 
-`win` - Install OpenPLC on Windows over Cygwin
+## References:
 
-`linux` - Install OpenPLC on a Debian-based Linux distribution
+OpenPLC v3 -> https://github.com/thiagoralves/OpenPLC_v3
 
-`docker` - Used by the `Dockerfile` (i.e. doesn't invoke `sudo`)
+UERANSIM -> https://github.com/aligungr/UERANSIM
 
-`rpi` - Install OpenPLC on a Raspberry Pi
-
-`custom` - Skip all specific package installation and tries to install OpenPLC assuming your system already has all dependencies met. This option can be useful if you're trying to install OpenPLC on an unsuported Linux platform or had manually installed all the dependency packages before.
-
-### Building, Installing and Running inside Docker
-Make sure [`docker` is installed](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
-
-#### Build
-```
-# instead of running install.sh as stated above, run:
-docker build -t openplc:v3 .
-```
-
-#### RUN
-_Devices can be passed to the `docker` daemon using the `-v` flag (e.g. `-v /dev/ttyACM0:/dev/ttyACM0`)_
-
-```bash
-docker run -it --rm --privileged -p 8080:8080 openplc:v3
-```
-
+Charts for ueransim -> https://github.com/Gradiant/openverso-charts
