@@ -30,7 +30,7 @@ ueransim UEs for 5G RAN simulation
 | affinity | object | `{}` |  |
 | apnList[0].apn | string | `"internet"` |  |
 | apnList[0].emergency | bool | `false` |  |
-| apnList[0].slice.sd | string | `"0x111111"` |  |
+| apnList[0].slice.sd | string | `"0xffffff"` |  |
 | apnList[0].slice.sst | int | `1` |  |
 | apnList[0].type | string | `"IPv4"` |  |
 | clusterDomain | string | `"cluster.local"` |  |
@@ -47,9 +47,9 @@ ueransim UEs for 5G RAN simulation
 | image.debug | bool | `false` |  |
 | image.pullPolicy | string | `"Always"` |  |
 | image.pullSecrets | list | `[]` |  |
-| image.registry | string | `"docker.io"` |  |
-| image.repository | string | `"openverso/ueransim"` |  |
-| image.tag | string | `"3.2.6"` |  |
+| image.registry | string | `"registry.gitlab.com"` |  |
+| image.repository | string | `"<your-repository>"` |  |
+| image.tag | string | `"<tag>"` |  |
 | initialMSISDN | string | `"0000000001"` |  |
 | key | string | `"465B5CE8B199B49FAA5F0A2EE238A6BC"` |  |
 | kubeVersion | string | `""` |  |
