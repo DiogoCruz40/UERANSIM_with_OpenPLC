@@ -26,10 +26,10 @@ $ helm repo update
 $ helm install <name-of-gnb> openverso/ueransim-gnb -n core5g
 ```
 
-3. Clone my repository in order to build the UEs and OpenPLC
+3. Clone my repository in order to build the UEs and OpenPLC and enter it.
 
 ```sh
-$ git clone https://github.com/DiogoCruz40/UERANSIM_with_OpenPLC
+$ git clone https://github.com/DiogoCruz40/UERANSIM_with_OpenPLC && cd UERANSIM_with_OpenPLC
 ```
 
 4. Change **supi** (only the **MSISDN** property) if u want to have different UEs in [ue.yaml](https://github.com/DiogoCruz40/UERANSIM_with_OpenPLC/blob/main/ue.yaml) file.
@@ -46,8 +46,8 @@ $ docker build -t registry.gitlab.com/<your-repository>/<name>:<tag> .
 $ docker push registry.gitlab.com/<your-repository>/<name>:<tag> 
 ```
 
-6. Change **initialMSISDN **(match **supi** property in *ue.yaml* folder) if u want to have different UEs in [ueransim-ues](https://github.com/DiogoCruz40/UERANSIM_with_OpenPLC/tree/main/ueransim-ues)/[values.yaml](https://github.com/DiogoCruz40/UERANSIM_with_OpenPLC/blob/main/ueransim-ues/values.yaml) file.
-7. Change the **image sub-properties** if u want to have different UEs in [ueransim-ues](https://github.com/DiogoCruz40/UERANSIM_with_OpenPLC/tree/main/ueransim-ues)/[values.yaml](https://github.com/DiogoCruz40/UERANSIM_with_OpenPLC/blob/main/ueransim-ues/values.yaml) file.
+6. Change **initialMSISDN** (match **supi** property in *ue.yaml* folder) if u want to have different UEs in ueransim-ues/[values.yaml](https://github.com/DiogoCruz40/UERANSIM_with_OpenPLC/blob/main/ueransim-ues/values.yaml) file.
+7. Change the **image sub-properties** if u want to have different UEs in ueransim-ues/[values.yaml](https://github.com/DiogoCruz40/UERANSIM_with_OpenPLC/blob/main/ueransim-ues/values.yaml) file.
 8. Finally instantiate the UE that you have just built to your Kubernetes cluster.
 
 ```sh
@@ -63,5 +63,7 @@ OpenPLC v3 -> https://github.com/thiagoralves/OpenPLC_v3
 UERANSIM -> https://github.com/aligungr/UERANSIM
 
 Charts for ueransim -> https://github.com/Gradiant/openverso-charts
+
+
 
 If you have any problems you can always put an issue, in this project.
