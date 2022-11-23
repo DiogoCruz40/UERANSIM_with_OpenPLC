@@ -72,16 +72,4 @@ jobs:
       uses: github/codeql-action/analyze@v2
       with:
         category: "/language:${{matrix.language}}"
-   
-    - name: Close Stale Issues
-      uses: actions/stale@v6.0.1
-      with:
-        days-before-issue-close: 14
-        days-before-issue-stale: 30
-        stale-issue-label: "stale"
-        # The message to post on the issue when tagging it. If none provided, will not mark issues stale.
-        stale-issue-message: "This issue is stale because it has been open for 30 days with no activity."
-        # The message to post on the issue when closing it. If none provided, will not comment when closing an issue.
-        close-issue-message: "This issue was closed because it has been inactive for 14 days since being marked as stale."
-        days-before-pr-stale: -1
-        days-before-pr-close: -1
+ 
