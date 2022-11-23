@@ -7,7 +7,7 @@ RUN apt update -y && apt install -y git && git clone https://github.com/aligungr
   wget https://github.com/Kitware/CMake/releases/download/v3.25.0/cmake-3.25.0.tar.gz &&  \
   tar zxvf cmake-3.25.0.tar.gz && cd cmake-3.25.0 && ./bootstrap && make && \
   make install && apt install libsctp-dev lksctp-tools iproute2 -y && cd ../UERANSIM && make
-  
+  ## Ubuntu latest here
 FROM ubuntu:latest
 
 COPY --from=env-build /UERANSIM/build/* /usr/local/bin/
