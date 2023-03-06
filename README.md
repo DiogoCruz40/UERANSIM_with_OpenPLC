@@ -62,6 +62,8 @@ OpenPLC v3 -> https://github.com/thiagoralves/OpenPLC_v3
 
 UERANSIM -> https://github.com/aligungr/UERANSIM
 
+Framed Routes -> https://github.com/s5uishida/open5gs_5gc_ueransim_framed_routing_sample_config
+
 Charts for ueransim -> https://github.com/Gradiant/openverso-charts
 
 
