@@ -41,7 +41,7 @@ sessions:
     apn: internet
     emergency: false
     slice:
-      sd: "0xffffff"
+      sd: "0x111111"
       sst: 1
     type: IPv4
 
