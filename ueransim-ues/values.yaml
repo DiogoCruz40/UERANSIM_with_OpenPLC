@@ -83,7 +83,7 @@ apnList:
     apn: 'internet'
     slice:
       sst: 1
-      sd: "0x111111"
+      sd: "0xffffff"
     emergency: false
 
 ## @param command Override default container command (useful when using custom images)
