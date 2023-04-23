@@ -1,0 +1,53 @@
+apiVersion: v1
+data:
+  k8s-entrypoint.sh: "#!/bin/bash\n\nset -e\n\necho \"Executing k8s customized entrypoint.sh\"\necho
+    \"Creating net device ogstun\"\nif grep \"ogstun\" /proc/net/dev > /dev/null;
+    then\n    echo \"Warnin: Net device ogstun already exists! may you need to set
+    createDev: false\";\n    exit 1\nfi\n\nip tuntap add name ogstun mode tun\nip
+    link set ogstun up\necho \"Setting IP 10.45.0.1/16 to device ogstun\"\nip addr
+    add 10.45.0.1/16 dev ogstun;\nip route add 10.45.0.0/24 dev ogstun;\nip route
+    add 192.168.20.0/24 dev ogstun;\nsysctl -w net.ipv4.ip_forward=1;\necho \"Enable
+    NAT for 10.45.0.1/16 and device ogstun\"\niptables -t nat -A POSTROUTING -s 10.45.0.1/16
+    ! -o ogstun -j MASQUERADE;\n/start_openplc.sh & \n$@"
+kind: ConfigMap
+metadata:
+  annotations:
+    meta.helm.sh/release-name: open5gs
+    meta.helm.sh/release-namespace: open5gs
+  creationTimestamp: "2023-03-06T17:55:37Z"
+  labels:
+    app.kubernetes.io/instance: open5gs
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: upf
+    helm.sh/chart: upf-2.0.6
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:data: {}
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:meta.helm.sh/release-name: {}
+          f:meta.helm.sh/release-namespace: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/managed-by: {}
+          f:app.kubernetes.io/name: {}
+          f:helm.sh/chart: {}
+    manager: helm
+    operation: Update
+    time: "2023-03-06T17:55:37Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:data:
+        f:k8s-entrypoint.sh: {}
+    manager: rancher
+    operation: Update
+    time: "2023-03-14T20:27:11Z"
+  name: open5gs-upf-entrypoint
+  namespace: open5gs
+  resourceVersion: "247415190"
+  uid: a28d8242-fbf4-47b8-b042-71c585c623e5

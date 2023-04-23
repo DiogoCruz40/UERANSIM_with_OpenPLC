@@ -27,6 +27,7 @@ fi
 sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward" $@
 (bash -c "sleep 10; ip addr add 192.168.20.100/24 dev uesimtun0" &)
 (bash -c "sleep 10; ip route add 10.45.0.0/24 dev uesimtun0" &)
+(bash -c "sleep 10; ip route add 192.168.20.0/24 dev uesimtun0" &)
 ( "/workdir/start_openplc.sh" & )
 command=$1
 trap _term SIGTERM
